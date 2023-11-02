@@ -1,0 +1,18 @@
+﻿@model Modelos.ProductoModel
+
+
+<select name="SelectListaProductos" id="id_SelectListaProductos" onchange="GetConsultarProducto()">
+
+    <option value="0">Seleccione un producto...</option>
+
+    @{
+        if (ViewBag.Productos != null)
+        {
+            foreach (var producto in ViewBag.Productos)
+            {
+                <option value="@producto.Id" >@producto.NombreProducto</option>
+            }
+        }
+    }
+
+</select>

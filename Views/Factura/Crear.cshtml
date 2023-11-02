@@ -1,0 +1,143 @@
+﻿@model Modelos.FacturaModel
+@{
+    ViewData["Title"] = "Crear factura";
+}
+@Html.Partial("/Views/Shared/NavBar.cshtml")
+<div>
+    <h1>Crear factura</h1>
+    <br />
+    <label>Proyecto de componentes</label>
+    <br />
+    <br />
+
+    @section Scripts{
+        <script>
+
+            var CantidadProductos = 0;
+            var numero_factura;
+            var JsonProductos=[];
+
+            $("#id_formulario_detalle_factura").css("display", "none");
+
+            $(document).ready(function () {
+
+                $("#id_btn_crear_nueva_factura").click(function () {
+
+                    $("#id_formulario_detalle_factura").css("display", "block");
+
+                    $("#espacio_lista_clientes").load("/Cliente/ListarClientes");
+
+                    limpiarNuevaFactura();
+
+                    //$("#id_host_filas_productos").html("");
+                    
+                    
+                });
+            });
+
+            $(document).ready(function () {
+                $("#id_btn_agregar_producto").click(function () {
+
+                    numero_factura = $("#id_numero_factura").val();
+
+                    if (numero_factura == null || numero_factura <= 0) {
+                        window.alert("Favor ingrese un número de factura válido para continuar.");
+                    }
+                    else
+                    {
+                        CantidadProductos++;
+
+                        crearNuevaFilaProducto();
+
+                        $("#id_host_filas_productos_" + CantidadProductos).load("/Producto/ListarProductos");
+
+                    }
+
+                });
+            });
+
+            $("select")
+                .on("change", function () {
+                    var str = "";
+                    $("select option:selected").each(function () {
+                        str += $(this).text() + " ";
+                    });
+                    console.log(str);
+                })
+                .trigger("change");
+
+        </script>
+    }
+
+    <div class="text-md-start panel-body">
+        <label>Nueva factura</label>
+        <button type="button" class="btn btn-sm btn-light" id="id_btn_crear_nueva_factura">Nuevo</button>
+    </div>
+    <form method="post" class="form-floating" id="id_formulario_detalle_factura">
+        <br />
+
+        <div class="row col-6">
+
+            <div class="col" id="espacio_lista_clientes">
+            
+            </div>
+
+            <div class="col">
+                <label>Número Factura</label>
+                <input class="form-control clase_input_num_fact" type="number" asp-for="NumeroFactura" id="id_numero_factura" />
+            </div>
+
+        </div>
+
+        <br />
+        <div class="col text-start panel-body">
+            <button type="button" class="btn btn-sm btn-light" id="id_btn_agregar_producto">Agregar producto</button>
+        </div>
+
+        <div>
+
+            <table class="table" id="id_tablaProductos">
+
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Imagen</th>
+                        <th>Totales</th>
+                    </tr>
+                </thead>
+
+                
+                        
+            </table>
+
+        </div>
+
+        <div class="clase_tabla_detalle_costos col-3 ">
+
+            <br />
+            <table class="table" id="tablaProductosValores">
+                <tr>
+                    <td>Sub total</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Impuestos (19%)</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>0</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <br />
+        <div class="text-center panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Guardar</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model Modelos.ClienteModel
+@{
+    ViewData["Title"] = "Listar clientes";
+}
+@Html.Partial("/Views/Shared/NavBar.cshtml")
+<br />
+<div class="text-center">
+
+    <h1 class="display-4">Lista de clientes</h1>
+    <br />
+
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id cliente</th>
+                    <th>Razón social</th>
+                    <th>Tipo cliente</th>
+                    <th>RFC</th>
+                </tr>
+            </thead>
+
+            @{
+                if (ViewBag.Clientes != null)
+                {
+                    foreach (var item in ViewBag.Clientes)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.RazonSocial</td>
+                            <td>@item.IdTipoCliente</td>
+                            <td>@item.RFC</td>
+                        </tr>
+                    }
+                }
+            }
+
+        </table>
+
+    </div>
+
+</div>

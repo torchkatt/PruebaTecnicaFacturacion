@@ -1,0 +1,45 @@
+﻿@model Modelos.ProductoModel
+@{
+    ViewData["Title"] = "Listar productos";
+}
+@Html.Partial("/Views/Shared/NavBar.cshtml")
+<br />
+<div class="text-center">
+
+    <h1 class="display-4">Lista de productos</h1>
+    <br />
+
+    <div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id producto</th>
+                    <th>Nombre producto</th>
+                    <th>Imagen producto</th>
+                    <th>Precio producto</th>
+                    <th>Existencias</th>
+                </tr>
+            </thead>
+
+            @{
+                if(ViewBag.Productos != null)
+                {
+                    foreach (var item in ViewBag.Productos)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.NombreProducto</td>
+                            <td>@item.ImagenProducto</td>
+                            <td>@item.PrecioUnitario</td>
+                            <td>@item.ext</td>
+                        </tr>
+                    }
+                }
+            }
+
+        </table>
+
+    </div>
+
+</div>
