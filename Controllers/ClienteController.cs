@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DevExtreme;
 
 namespace PruebaTecnicaFacturacion.Controllers
 {
@@ -75,6 +76,11 @@ namespace PruebaTecnicaFacturacion.Controllers
         {
             ViewBag.Clientes = this.listaClientes;
             return View();
+        }
+
+        public Microsoft.AspNetCore.Mvc.JsonResult ObtenerClientes()
+        {
+            return new JsonResult(new { data = this.listaClientes });
         }
     }
 }

@@ -29,3 +29,8 @@ body {
 .clase_tabla_detalle_costos {
     margin-left: auto;
 }
+
+.dx-item-content .dx-datagrid-search-panel {
+    width: 12rem;
+    height: 2.5rem;
+}

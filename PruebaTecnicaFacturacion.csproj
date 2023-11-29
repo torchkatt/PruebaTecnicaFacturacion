@@ -1,13 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+    <UserSecretsId>93da70a2-7826-4ea8-bf5d-066cbf86dd50</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Dashboard.CustomItemExtension" Version="23.1.0.2" />
+    <PackageReference Include="DevExpress.Win.Design.es" Version="23.1.6" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="3.0.0" />
+    <PackageReference Include="DevExtreme.Library" Version="17.1.5" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExtreme.AspNet.Data">
+      <HintPath>bin\Debug\net7.0\DevExtreme.AspNet.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

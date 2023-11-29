@@ -3,14 +3,38 @@
     ViewData["Title"] = "Listar productos";
 }
 @Html.Partial("/Views/Shared/NavBar.cshtml")
+
+@using PruebaTecnicaFacturacion.Models
+
+
 <br />
-<div class="text-center">
+
+
+
+<div class="text-center dx-viewport">
 
     <h1 class="display-4">Lista de productos</h1>
     <br />
 
-    <div>
+    <div class="demo-container">
 
+        <div id="TablaProductos"></div>
+
+        @section Scripts
+            {
+            <script>
+                CrearTablaProductos();
+            </script>
+        }
+
+    </div>
+</div>
+
+
+    @* 
+
+    <div>
+         
         <table class="table">
             <thead>
                 <tr>
@@ -41,5 +65,5 @@
         </table>
 
     </div>
+ *@
 
-</div>

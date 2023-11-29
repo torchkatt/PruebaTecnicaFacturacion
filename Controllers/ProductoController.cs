@@ -2,11 +2,18 @@
 using PruebaTecnicaFacturacion.Models;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
+using DevExtreme.AspNet.Data;
+using DevExpress;
+using System.Text.Json;
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Mvc;
+using JsonResult = Microsoft.AspNetCore.Mvc.JsonResult;
 
 namespace PruebaTecnicaFacturacion.Controllers
 {
-    public class ProductoController : Controller
+    public class ProductoController : Microsoft.AspNetCore.Mvc.Controller
     {
 
         private List<Modelos.ProductoModel>? listaProductos;
@@ -59,23 +66,23 @@ namespace PruebaTecnicaFacturacion.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return (IActionResult)View();
 
         }
 
         public IActionResult Consultar()
         {
             ViewBag.Productos = this.listaProductos;
-            return View();
+            return (IActionResult)View();
             
         }
 
         public IActionResult Registrar()
         {
-            return View();
+            return (IActionResult)View();
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         public IActionResult Registrar(Modelos.ProductoModel producto)
         {
             using (SqlConnection connection = new(Configuration["ConnectionStrings:conexion"]))
@@ -95,13 +102,20 @@ namespace PruebaTecnicaFacturacion.Controllers
                     connection.Close();
                 }
             }
-            return Redirect("DashBoard");
+            return (IActionResult)Redirect("DashBoard");
         }
 
         public IActionResult ListarProductos()
         {
+
             ViewBag.Productos = this.listaProductos;
+
             return View();
+        }
+
+        public Microsoft.AspNetCore.Mvc.JsonResult ObtenerProductos()
+        {
+            return new JsonResult( new { data = this.listaProductos });
         }
 
     }
